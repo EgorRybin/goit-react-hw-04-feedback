@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 
 import s from './StatisticsValues.module.css'
 
-const StatisticsValues = ({  good, neutral, bad, countPercentage, totalFidback }) => {
+const StatisticsValues = ({ state, countPercentage, totalFidback }) => {
+  const { good, neutral, bad } = state;
   return (
     <div className={s.conteiner}>
       <p className={s.string} >good: {good}</p>

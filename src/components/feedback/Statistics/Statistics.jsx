@@ -5,41 +5,33 @@ import StatisticsValues from '../StatisticsValues/StatisticsValues';
 import { useState } from 'react';
 
 export const Statistics = () => {
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
-
-  const arrStrings = ['good', 'neutral', 'bad'];
-  const arr = [good, neutral, bad];
+  const [state, setState] = useState({
+    good: 0,
+    bad: 0,
+    neutral: 0,
+  });
 
   const onLeaveFeedback = e => {
     const { name } = e.target;
-    if (name === 'good') {
-      setGood(prev => prev + 1);
-    }
-    if (name === 'neutral') {
-      setNeutral(prev => prev + 1);
-    }
-    if (name === 'bad') {
-      setBad(prev => prev + 1);
-    }
+    setState(prev => ({ ...prev, [name]: prev[name] + 1 }));
   };
 
   const totalFidback = () => {
-    return arr.reduce((arr, el) => {
+    const stateValues = Object.values(state);
+    return stateValues.reduce((arr, el) => {
       return arr + el;
     }, 0);
   };
 
   const countPositiveFeedbackPercentage = () => {
-    return Math.floor((good / totalFidback()) * 100);
+    return Math.floor((state.good / totalFidback()) * 100);
   };
 
   return (
     <>
       <Sections title="Please leave feedback">
         <FeedbackOptions
-          options={arrStrings}
+          options={Object.keys(state)}
           onLeaveFeedback={onLeaveFeedback}
         />
       </Sections>
@@ -48,9 +40,7 @@ export const Statistics = () => {
         {totalFidback() > 0 ? (
           <StatisticsValues
             totalFidback={totalFidback}
-            good={good}
-            bad={bad}
-            neutral={neutral}
+            state={state}
             countPercentage={countPositiveFeedbackPercentage}
           />
         ) : (
