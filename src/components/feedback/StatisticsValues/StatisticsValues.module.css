@@ -1,0 +1,8 @@
+.string {
+font-style: 24px
+;
+}
+.conteiner {
+    display: flex;
+    flex-direction: column;
+}
