@@ -2,8 +2,7 @@ import PropTypes from "prop-types";
 
 import s from './StatisticsValues.module.css'
 
-const StatisticsValues = ({ state, countPercentage, totalFidback }) => {
-  const { good, neutral, bad } = state;
+const StatisticsValues = ({  good, neutral, bad, countPercentage, totalFidback }) => {
   return (
     <div className={s.conteiner}>
       <p className={s.string} >good: {good}</p>
@@ -19,10 +18,9 @@ export default StatisticsValues;
 
 StatisticsValues.propTypes = {
   totalFidback: PropTypes.func.isRequired,
-  state: PropTypes.PropTypes.shape({
-    good: PropTypes.number,
-    neutral: PropTypes.number,
-    bad: PropTypes.number,
-  }),
+  good: PropTypes.number,
+  bad: PropTypes.number,
+  neutral: PropTypes.number,
   countPercentage: PropTypes.func.isRequired,
 }
+  

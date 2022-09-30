@@ -1,4 +1,4 @@
-import Statistics from './feedback/Statistics/Statistics';
+import {Statistics} from './feedback/Statistics/Statistics';
 import s from './feedback/Statistics/Statistics.module.css';
 
 
